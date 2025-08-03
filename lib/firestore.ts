@@ -1,6 +1,5 @@
-// lib/firestore.ts
+
 import {
-  getFirestore,
   collection,
   addDoc,
   serverTimestamp,
