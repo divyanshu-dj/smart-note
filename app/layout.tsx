@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// import { ThemeProvider } from 'next-themes';
+import { ThemeProvider } from 'next-themes';
 import { Toaster } from 'sonner';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -31,14 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <ThemeProvider attribute="class" defaultTheme="system"> */}
+      <ThemeProvider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {children}
           <Toaster position="top-right" richColors />
         </body>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </html>
   );
 }
