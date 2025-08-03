@@ -73,14 +73,6 @@ export default function AuthForm() {
             {isRegistering ? 'Login here' : 'Register here'}
           </button>
         </p>
-        
-        <hr className="border-t border-gray-500 my-4 w-3/4 mx-auto" />
-
-        <p className="text-sm text-gray-400 text-center">
-          Demo credentials: <br />
-          Email: <strong>testuser@example.com</strong> <br />
-          Password: <strong>123456</strong>
-        </p>
       </form>
     </div>
   );

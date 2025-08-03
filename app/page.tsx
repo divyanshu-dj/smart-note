@@ -1,8 +1,10 @@
-// app/page.tsx
+
 'use client';
 
 import AuthForm from '@/components/AuthForm';
+import AuthGuard from '@/components/AuthGuard';
 import Header from '@/components/Header';
+import Editor from '@/components/Editor';
 import useAuth from '@/hooks/useAuth';
 
 export default function HomePage() {
@@ -10,7 +12,7 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <div className="flex items-center justify-center h-screen bg-slate-900 text-white">
         <p className="text-lg">Loading…</p>
       </div>
     );
@@ -18,22 +20,32 @@ export default function HomePage() {
 
   if (!user) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <div className="flex items-center justify-center h-screen bg-slate-900 text-white">
         <div className="w-full max-w-md px-4">
-          <AuthForm />
+          <div className="bg-slate-800 p-6 rounded-lg shadow-lg">
+            <AuthForm />
+            <hr className="border-slate-700 my-6" />
+            <p className="text-sm text-slate-400 text-center">
+              Demo credentials:<br />
+              <strong>Email:</strong> demo@example.com<br />
+              <strong>Password:</strong> password
+            </p>
+          </div>
         </div>
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="min-h-screen bg-slate-900 text-white">
       <Header />
 
       <main className="max-w-4xl mx-auto p-6">
-        <h2 className="text-2xl font-semibold mb-4">
-          Welcome, {user.displayName ?? user.email}!
-        </h2>
-        {/* Your authenticated content goes here */}
+        <AuthGuard>
+          <div className="bg-slate-800 p-6 rounded-lg shadow-lg space-y-6">
+            <Editor />
+          </div>
+        </AuthGuard>
       </main>
     </div>
   );
