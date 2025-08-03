@@ -16,7 +16,7 @@ const SaveButtons = ({
   onRefine,
   onTitle,
 }: Props) => (
-    <div className="mt-4 flex gap-3">
+    <div className="mt-4 flex flex-col sm:flex-row gap-3">
         <button
             onClick={onSave}
             disabled={disabled || loading.save}
