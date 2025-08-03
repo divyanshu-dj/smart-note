@@ -9,6 +9,8 @@ export default function Editor() {
     setContent,
     refined,
     setRefined,
+    suggestedTitle,
+    setSuggestedTitle,
     title,
     setTitle,
     loading,
@@ -21,7 +23,8 @@ export default function Editor() {
     acceptTitle,
   } = useNoteEditor();
 
-  
+  const declineRefined = () => setRefined('');
+  const declineTitle = () => setSuggestedTitle('');
 
   return (
     <section className="max-w-4xl mx-auto mt-10 space-y-6 px-4">
@@ -66,6 +69,38 @@ export default function Editor() {
           </p>
         )}
       </div>
+
+      {/* AI-Refined Note */}
+      {refined && (
+        <div className="bg-slate-800 rounded-2xl shadow-xl p-6 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-semibold text-indigo-300">✨ AI-Refined Note</h3>
+          <pre className="whitespace-pre-wrap text-slate-100">{refined}</pre>
+          <div className="flex gap-3">
+            <button onClick={acceptRefined} className="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium transition">
+              Accept
+            </button>
+            <button onClick={declineRefined} className="px-4 py-2 rounded-lg border border-red-500 text-red-300 hover:bg-slate-700 transition">
+              Decline
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Generated Title */}
+      {suggestedTitle && (
+        <div className="bg-slate-800 rounded-2xl shadow-xl p-6 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-semibold text-indigo-300">🏷️ Suggested Title</h3>
+          <p className="text-slate-100 text-lg">{suggestedTitle}</p>
+          <div className="flex gap-3">
+            <button onClick={acceptTitle} className="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium transition">
+              Accept
+            </button>
+            <button onClick={declineTitle} className="px-4 py-2 rounded-lg border border-red-500 text-red-300 hover:bg-slate-700 transition">
+              Decline
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
